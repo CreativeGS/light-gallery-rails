@@ -750,16 +750,21 @@
         if (!_this.lgBusy) {
 
             if (this.s.download) {
-                var _src;
+                var _src, _name;
                 if (_this.s.dynamic) {
                     _src = _this.s.dynamicEl[index].downloadUrl !== false && (_this.s.dynamicEl[index].downloadUrl || _this.s.dynamicEl[index].src);
                 } else {
                     _src = _this.$items.eq(index).attr('data-download-url') !== 'false' && (_this.$items.eq(index).attr('data-download-url') || _this.$items.eq(index).attr('href') || _this.$items.eq(index).attr('data-src'));
+                    _name = _this.$items.eq(index).attr('data-download-url') !== 'false' && (_this.$items.eq(index).attr('data-download-url'));
 
                 }
 
                 if (_src) {
                     $('#lg-download').attr('href', _src);
+                    if (_name) {
+                      $('#lg-download').attr('download', _name);
+                    }
+                    
                     _this.$outer.removeClass('lg-hide-download');
                 } else {
                     _this.$outer.addClass('lg-hide-download');
